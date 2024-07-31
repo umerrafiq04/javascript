@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .deco{
+background-color: maroon;
+color: white;
+border: 1rem;
+border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <form action="">
+<textarea type="text" placeholder="your name"> </textarea>
+        <button type="button" onclick="add()">create note</button>
+    </form>
+ 
+</body>
+<script>
+    //small to do list
+    let j=1;
+    
+    function add(){
+      
+  
+        let details=document.querySelector(`textarea[type="text"]`).value;
+           
+const child= document.createElement("div");
+//console.log(child);
+child.className="deco";
+
+child.id=`${j}`;
+child.style.marginTop=`${j}px`;
+console.log(j);j++;
+let text= document.createTextNode(`${details}` + `${Date()}`);
+child.appendChild(text);
+document.body.appendChild(child);
+document.body.style.backgroundColor="black";
+    }
+
+</script>
+</html>
