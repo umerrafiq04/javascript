@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+    body{
+        background-color: black;
+    }
+    
+    .outer {
+        align-items: center;
+        width: 100%;
+        height:100%;
+        border-radius: 10px;
+        padding: 5px 10px;
+        background: radial-gradient(circle 230px at 0% 0%, #ffffff, #0c0d0d);
+        position: relative;
+      }
+      
+      .dot {
+        width: 5px;
+        aspect-ratio: 1;
+        position: absolute;
+        background-color: #fff;
+        box-shadow: 0 0 10px #ffffff;
+        border-radius: 100px;
+        z-index: 2;
+        right: 10%;
+        top: 10%;
+        animation: moveDot 6s linear infinite;
+      }
+      
+      @keyframes moveDot {
+        0%,
+        100% {
+          top: 10%;
+          right: 10%;
+        }
+        25% {
+          top: 10%;
+          right: calc(100% - 35px);
+        }
+        50% {
+          top: calc(100% - 30px);
+          right: calc(100% - 35px);
+        }
+        75% {
+          top: calc(100% - 30px);
+          right: 10%;
+        }
+      }
+      
+      .card {
+        z-index: 1;
+        width: 100%;
+        height:fit-content;
+        border-radius: 9px;
+        border: snone;
+        background-size: 20px 20px;
+        background: radial-gradient(circle 280px at 0% 0%, #444444, #0c0d0d);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        flex-direction: column;
+        color: #fff;
+        position: relative;
+      }
+      .ray {
+        width: 220px;
+        height: 45px;
+        border-radius: 100px;
+        position: absolute;
+        background-color: #c7c7c7;
+        opacity: 0.4;
+        box-shadow: 0 0 50px #fff;
+        filter: blur(10px);
+        transform-origin: 10%;
+        top: 0%;
+        left: 0;
+        transform: rotate(40deg);
+      }
+      
+      .card .text {
+        font-weight: bolder;
+        font-size: 4rem;
+        background: linear-gradient(45deg, #000000 4%, #fff, #000);
+        background-clip: text;
+        color: transparent;
+      }
+      
+      .linee {
+        width: 100%;
+        height: 1px;
+        position: absolute;
+        background-color: #2c2c2c;
+      }
+      .topl {
+        top: 10%;
+        background: linear-gradient(90deg, #888888 30%, #1d1f1f 70%);
+      }
+      .bottoml {
+        bottom: 10%;
+      }
+      .leftl {
+        left: 10%;
+        width: 1px;
+        height: 100%;
+        background: linear-gradient(180deg, #747474 30%, #222424 70%);
+      }
+      .rightl {
+        right: 10%;
+        width: 1px;
+        
+        height: 100%;
+      }
+      .container {
+  display: flex;
+  justify-content: center;
+ 
+  height:fit-content;
+  margin-bottom: 10px;
+}
+
+
+.form-container {
+  width: 90%;
+  border: 2px solid transparent;
+  padding: 3px 24px;
+  font-size: 14px;
+  font-family: inherit;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-sizing: border-box;
+  border-radius: 16px;
+  background-size: 200% 100%;
+  animation: gradient 5s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.form-container button:active {
+  scale: 0.95;
+}
+
+.form-container .form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-container .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.form-container .form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #717171;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.form-container .form-group input {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 8px;
+  color: #fff;
+  font-family: inherit;
+  background-color: transparent;
+  border: 1px solid #414141;
+}
+
+.form-container .form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 8px;
+  resize: none;
+  color: #fff;
+  height: 96px;
+  border: 1px solid #414141;
+  background-color: transparent;
+  font-family: inherit;
+}
+
+.form-container .form-group input::placeholder {
+  opacity: 0.5;
+}
+
+.form-container .form-group input:focus {
+  outline: none;
+  border-color: #e81cff;
+}
+
+.form-container .form-group textarea:focus {
+  outline: none;
+  border-color: #e81cff;
+}
+
+.form-container .form-submit-btn {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  align-self: flex-start;
+  font-family: inherit;
+  color: #717171;
+  font-weight: 600;
+  width: 40%;
+  background: #313131;
+  border: 1px solid #414141;
+  padding: 12px 16px;
+  font-size: inherit;
+  gap: 8px;
+  margin-top: 8px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.form-container .form-submit-btn:hover {
+  background-color: #fff;
+  border-color: #fff;
+}
+
+
+.notification1 {
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+  position: relative;
+  width:100%;
+  height:fit-content;
+  padding: 6px;
+  background: #29292c;
+  border-radius: 1rem;
+  overflow: hidden;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 16px;
+  --gradient: linear-gradient(to bottom, #2eadff, #3d83ff, #7e61ff);
+  --color: #32a6ff;
+  align-items: start;
+  margin: 5px 5px;
+  margin-top: 15px;
+
+}
+
+.notification1:before {
+  position: absolute;
+  content: "";
+  inset: 0.0625rem;
+  border-radius: 0.9375rem;
+  background: #18181b;
+  z-index: 2
+}
+
+.notification1:after {
+  position: absolute;
+  content: "";
+  width: 0.25rem;
+  inset: 0.65rem auto 0.65rem 0.5rem;
+  border-radius: 0.125rem;
+  background: var(--gradient);
+  transition: transform 300ms ease;
+  z-index: 4;
+}
+
+.notification1:hover:after {
+  transform: translateX(0.15rem)
+}
+
+.notititle1 {
+  color: var(--color);
+  padding: 0.65rem 0.25rem 0.4rem 1.25rem;
+  font-weight: 500;
+  font-size: 5.1rem;
+  transition: transform 300ms ease;
+  z-index: 5;
+ display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+width: 96%;
+
+}
+  
+
+
+.notification1:hover .notititle1 {
+  transform: translateX(0.15rem)
+}
+
+.notibody1 {
+  color: #99999d;
+  padding: 0 1.25rem;
+  transition: transform 300ms ease;
+  z-index: 5;
+  font-size: 3.1rem;
+  padding: 5px 5px;
+  margin: 4px 4px;
+}
+
+.notification1:hover .notibody1 {
+  transform: translateX(0.25rem)
+}
+
+.notiglow1,
+.notiborderglow1 {
+  position: absolute;
+  width: 20rem;
+  height: 20rem;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle closest-side at center, white, transparent);
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.notiglow1 {
+  z-index: 3;
+}
+
+.notiborderglow1 {
+  z-index: 1;
+}
+
+.notification1:hover .notiglow1 {
+  opacity: 0.1
+}
+
+.notification1:hover .notiborderglow1 {
+  opacity: 0.1
+}
+
+.note {
+  color: var(--color);
+  position: fixed;
+  top: 80%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 0.9rem;
+  width: 75%;
+}
+
+      </style>
+</head>
+<body style="align-items: center;text-align: center;">
+<div class="container" >
+    <div class="outer">
+        <div class="dot"></div>
+        <div class="card">
+          <div class="ray"></div>
+          <div class="text">Um Er</div>
+          <div class="form-container">
+            <form class="form">
+              <div class="form-group">
+                <label for="email" style="font-size:3rem;">Heading</label>
+                <input required="" name="email" id="email" type="text" style="height: 6rem;font-size:4rem;">
+              </div>
+              <div class="form-group">
+                <label for="textarea" style="font-size:3rem;">Make a note</label>
+                <textarea required="" cols="50" rows="10" id="textarea" name="textarea"  style="font-size:3rem;height: 16rem;">          </textarea>
+              </div>
+              <button onclick="add()" type="button"  class="form-submit-btn" style="height: 5rem;text-align: center;font-size: 3rem;">Submit</button>
+            </form>
+          </div>
+
+          
+
+          <div class="line bottoml"></div>
+          <div class="line rightl"></div>
+        </div>
+      </div>
+
+      
+    </div>
+    <div id="parent"></div>
+
+</body>
+<script>const parent = document.getElementById("parent");
+
+  // Delete notification function
+  // function deleteNotification() {
+  //   this.parentNode.parentNode.remove();
+  //   savedata();
+  // }
+  function deleteNotification() {
+  this.closest(".notification1").remove();
+  savedata();
+}
+  
+  function add() {
+
+    let heading = document.querySelector(`input[type="text"]`).value;
+    let note = document.querySelector(`#textarea`).value;
+    let outer = document.querySelector(`.outer`);
+    function getCurrentDate() {
+  const date = new Date();
+  const day = date.getDate();
+  const month = date.toLocaleString('default', { month: 'short' });
+ 
+  return `${day} ${month}`;
+}
+
+    let notification = document.createElement("div");
+    let notiglow = document.createElement("div");
+    let notiborderglow = document.createElement("div");
+    let notibutton = document.createElement("div");
+    let notititle = document.createElement("div");
+    let notibody = document.createElement("div");
+    let deletee = document.createElement("button");
+    deletee.innerHTML = "Delete";
+    deletee.style.width = "100px";
+    deletee.style.height = "50px";
+    deletee.style.fontSize="1.4rem";
+    deletee.style.fontWeight="bolder";
+    deletee.style.marginLeft = "20px";
+    deletee.style.color = "red";
+  
+  
+    notification.classList = "notification1";
+    notiglow.classList = "notiglow1";
+    notiborderglow.classList = "notiborderglow1";
+    notititle.classList = "notititle1";
+    notibody.classList = "notibody1";
+  
+    notititle.textContent = `${heading}          (${getCurrentDate()})` ;
+    notibody.textContent = note;
+  
+    
+
+    notification.appendChild(notibutton);
+   
+    notititle.appendChild(deletee);
+    notification.appendChild(notiglow);
+    notification.appendChild(notiborderglow);
+    notification.appendChild(notititle);
+    notification.appendChild(notibody);
+    
+  
+    // Add event listener to delete button
+    deletee.addEventListener("click", deleteNotification);
+  
+    parent.appendChild(notification);
+    savedata();
+  }
+  
+  function savedata() {
+    localStorage.setItem("data", parent.innerHTML);
+  }
+  
+  function showdata() {
+    parent.innerHTML = localStorage.getItem("data");
+    const deleteButtons = parent.querySelectorAll(".notititle1 button");
+    deleteButtons.forEach(button => {
+      button.addEventListener("click", deleteNotification);
+    });
+  }
+  
+  showdata();
+</script>
+</html>
