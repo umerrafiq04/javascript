@@ -286,15 +286,15 @@
   color: var(--color);
   padding: 0.65rem 0.25rem 0.4rem 1.25rem;
   font-weight: 500;
-  font-size: 5.1rem;
+  font-size: 4rem;
   transition: transform 300ms ease;
   z-index: 5;
  display: flex;
-  justify-content: space-between;
+  justify-content:space-between;
   align-items: center;
   flex-direction: row;
 width: 96%;
-
+overflow: scroll;
 }
   
 
@@ -308,7 +308,7 @@ width: 96%;
   padding: 0 1.25rem;
   transition: transform 300ms ease;
   z-index: 5;
-  font-size: 3.1rem;
+  font-size: 3.4rem;
   padding: 5px 5px;
   margin: 4px 4px;
 }
@@ -354,10 +354,17 @@ width: 96%;
   font-size: 0.9rem;
   width: 75%;
 }
+#comp {
+      transition: opacity 2s ease;
+    }
 
+    #complete {
+      transition: opacity 2s ease;
+    }
       </style>
 </head>
 <body style="align-items: center;text-align: center;">
+  
 <div class="container" >
     <div class="outer">
         <div class="dot"></div>
@@ -367,14 +374,16 @@ width: 96%;
           <div class="form-container">
             <form class="form">
               <div class="form-group">
-                <label for="email" style="font-size:3rem;">Heading</label>
+                <label for="email" style="font-size:3rem;">Title</label>
                 <input required="" name="email" id="email" type="text" style="height: 6rem;font-size:4rem;">
               </div>
               <div class="form-group">
-                <label for="textarea" style="font-size:3rem;">Make a note</label>
+                <label for="textarea" style="font-size:3rem;">Discription</label>
                 <textarea required="" cols="50" rows="10" id="textarea" name="textarea"  style="font-size:3rem;height: 16rem;">          </textarea>
               </div>
-              <button onclick="add()" type="button"  class="form-submit-btn" style="height: 5rem;text-align: center;font-size: 3rem;">Submit</button>
+              <div style="display: flex;flex-direction: row;justify-content: space-between;">
+              <button onclick="add()" type="button"  class="form-submit-btn" style="height: 5rem;text-align: center;font-size: 3rem;" >Add</button>
+              <button  type="button" id="comp" class="form-submit-btn  "       style="height: 5rem;text-align: center;font-size: 3rem;">Completed</button> </div>
             </form>
           </div>
 
@@ -385,74 +394,151 @@ width: 96%;
         </div>
       </div>
 
-      
     </div>
+
+<div>
     <div id="parent"></div>
+    <div id="complete"  style="width: 100%;height:fit-content;position:absolute;display: none;margin-left: 0px;"></div>
+  
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
-<script>const parent = document.getElementById("parent");
 
-  // Delete notification function
-  // function deleteNotification() {
-  //   this.parentNode.parentNode.remove();
-  //   savedata();
-  // }
-  function deleteNotification() {
-  this.closest(".notification1").remove();
-  savedata();
+<script>
+const compBtn = document.getElementById('comp');
+
+compBtn.addEventListener('click', comp);
+
+
+const parent = document.getElementById("parent");
+const complete = document.getElementById("complete");
+
+function comp() {
+
+  const compButton = document.getElementById('comp');
+  const completeElement = document.getElementById('complete');
+  completeElement.style.transition="2s ease";
+  completeElement.style.marginLeft= "0px;";
+
+  // completeElement.style.border = "3px solid yellow";
+  completeElement.style.display = "block";
+  parent.style.display = "none";
+ 
+
 }
+
+
+
+  
+  function deleteNotification() {
+    this.closest(".notification1").remove();
+    savedata();
+    savedata2();
+  }
+  
+  function completeNotification() {
+  
+
+    const date = new Date();
+
+const hours = date.getHours();
+const minutes = date.getMinutes();
+const seconds = date.getSeconds();
+const dayOfWeek = date.getDay();
+const dayOfMonth = date.getDate();
+const month = date.getMonth() + 1; // months are 0-based
+
+const year= date.getFullYear();
+console.log(`Time: ${hours}:${minutes}:${seconds}`);
+console.log(`Day: ${dayOfWeek}`); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+console.log(`Date: ${dayOfMonth}`);
+console.log(`Month: ${month}`);
+
+    this.closest(".notification1").style.backgroundColor="blue";
+    let son=this.closest(".notification1");
+    son.style.padding="5px 5px"
+    const c = son.querySelector(".notititle1");
+
+
+
+    c.innerHTML+=`${hours}:${minutes}/${dayOfMonth}/${month}/${year}`;
+    complete.appendChild(son);
+    
+    const com = son.querySelector(".com");
+  
+   com.style.display="none";
+ 
+    savedata2();
+    savedata();
+  
+  }
   
   function add() {
+   // const compButton = document.getElementById('comp');
+  const completeElement = document.getElementById('complete');
+ 
+  completeElement.style.display = "none";
+  parent.style.display = "block";
 
     let heading = document.querySelector(`input[type="text"]`).value;
     let note = document.querySelector(`#textarea`).value;
     let outer = document.querySelector(`.outer`);
-    function getCurrentDate() {
-  const date = new Date();
-  const day = date.getDate();
-  const month = date.toLocaleString('default', { month: 'short' });
- 
-  return `${day} ${month}`;
-}
-
+  
     let notification = document.createElement("div");
     let notiglow = document.createElement("div");
     let notiborderglow = document.createElement("div");
     let notibutton = document.createElement("div");
     let notititle = document.createElement("div");
     let notibody = document.createElement("div");
+    let cont = document.createElement("div");
     let deletee = document.createElement("button");
-    deletee.innerHTML = "Delete";
+    let complete = document.createElement("button");
+    deletee.innerHTML = "❌";
     deletee.style.width = "100px";
     deletee.style.height = "50px";
     deletee.style.fontSize="1.4rem";
     deletee.style.fontWeight="bolder";
     deletee.style.marginLeft = "20px";
-    deletee.style.color = "red";
+    deletee.style.color = "white";
+    deletee.style.backgroundColor = "transparent";
+    deletee.style.border="none";
+    deletee.style.borderRadius = "5px";
   
-  
+    complete.innerHTML = "✔️";
+    complete.style.width = "100px";
+    complete.style.height = "50px";
+    complete.style.fontSize="1.4rem";
+    complete.style.fontWeight="bolder";
+    complete.style.marginLeft = "20px";
+    complete.style.color = "green";
+    complete.style.backgroundColor = "transparent";
+    complete.style.border="none";
+    complete.style.borderRadius = "5px";
+    complete.classList="com";
     notification.classList = "notification1";
     notiglow.classList = "notiglow1";
     notiborderglow.classList = "notiborderglow1";
     notititle.classList = "notititle1";
     notibody.classList = "notibody1";
   
-    notititle.textContent = `${heading}          (${getCurrentDate()})` ;
+    notititle.textContent = `${heading} ` ;
     notibody.textContent = note;
-  
-    
-
+    cont.style.display="flex";
+    cont.style.flexDirection="row";
+    // cont.style.backgroundColor="yellow";
+    //notititle.style.justifyContent="space-between";
+  cont.appendChild(deletee);
+  cont.appendChild(complete);
     notification.appendChild(notibutton);
+    notititle.appendChild(cont);
    
-    notititle.appendChild(deletee);
     notification.appendChild(notiglow);
     notification.appendChild(notiborderglow);
     notification.appendChild(notititle);
     notification.appendChild(notibody);
-    
   
-    // Add event listener to delete button
     deletee.addEventListener("click", deleteNotification);
+    complete.addEventListener("click", completeNotification);
   
     parent.appendChild(notification);
     savedata();
@@ -462,14 +548,35 @@ width: 96%;
     localStorage.setItem("data", parent.innerHTML);
   }
   
+  function savedata2() {
+    localStorage.setItem("data2", complete.innerHTML);
+  }
+  
   function showdata() {
     parent.innerHTML = localStorage.getItem("data");
     const deleteButtons = parent.querySelectorAll(".notititle1 button");
+    const completeButton = parent.querySelectorAll(".com");
+    
+    completeButton.forEach(button => {
+      button.addEventListener("click", completeNotification);
+    });
+
+    deleteButtons.forEach(button => {
+      button.addEventListener("click", deleteNotification);
+
+    });
+  }
+  function showdata2() {
+   complete.innerHTML = localStorage.getItem("data2");
+   
+    const deleteButtons = complete.querySelectorAll(".notititle1 button");
     deleteButtons.forEach(button => {
       button.addEventListener("click", deleteNotification);
     });
   }
-  
+ 
+  showdata2();
   showdata();
 </script>
+
 </html>
