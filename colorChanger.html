@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>changing background with respect to any event</title>
+    <style>
+        .container{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            margin-top: 100px;
+        }
+        .child{
+            width: 200px;
+            height: 200px;
+border-radius: 20%;
+margin-left: 5px;
+        }
+        .child:nth-child(1){
+            background-color: green;
+        }
+        .child:nth-child(2){
+            background-color: yellow;
+        }
+        .child:nth-child(3){
+            background-color: pink;
+        }
+        .child:nth-child(4){
+            background-color: aqua;
+        }
+      </style>
+</head>
+<body>
+    <div class="container">
+
+<div class="child">green</div>
+<div class="child">yellow</div>
+<div class="child">pink</div>
+<div class="child">aqua</div>
+
+    </div>
+    
+    <script>
+        var buttons= document.querySelectorAll(".child");
+var body= document.querySelector("body");
+buttons.forEach(function(button){
+button.addEventListener("click",(e)=>{
+//     console.log(e);
+// console.log(e.target);
+body.style.backgroundColor=e.target.innerHTML;
+})
+
+
+});
+
+    </script>
+</body>
+</html>
